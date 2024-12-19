@@ -58,7 +58,7 @@ function Events() {
   return (
     <div className="max-w-6xl mx-auto px-4">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Upcoming Events</h1>
+        <h1 className="text-3xl font-bold text-black">Upcoming Events</h1>
         <button className="btn-primary" onClick={() => setShowModal(true)}>
           Create Event
         </button>
