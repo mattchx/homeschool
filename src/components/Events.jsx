@@ -1,5 +1,9 @@
+import { useState } from 'react';
+import EventModal from './EventModal';
+
 function Events() {
-  const events = [
+  const [showModal, setShowModal] = useState(false);
+  const [events, setEvents] = useState([
     {
       id: 1,
       title: "Virtual Museum Tour",
@@ -27,16 +31,46 @@ function Events() {
       organizer: "Reading Circle",
       description: "Discussion of this month's book: 'The Giver' by Lois Lowry."
     }
-  ]
+  ]);
+  const [newEvent, setNewEvent] = useState({
+    title: '',
+    date: '',
+    time: '',
+    type: '',
+    organizer: '',
+    description: '',
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setEvents([...events, { ...newEvent, id: events.length + 1 }]);
+    setNewEvent({
+      title: '',
+      date: '',
+      time: '',
+      type: '',
+      organizer: '',
+      description: '',
+    });
+    setShowModal(false);
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Upcoming Events</h1>
-        <button className="btn-primary">
+        <button className="btn-primary" onClick={() => setShowModal(true)}>
           Create Event
         </button>
       </div>
+
+      <EventModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        newEvent={newEvent}
+        setNewEvent={setNewEvent}
+        handleSubmit={handleSubmit}
+      />
 
       <div className="space-y-6">
         {events.map((event) => (
