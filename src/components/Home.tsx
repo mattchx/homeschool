@@ -1,4 +1,6 @@
 import { Link } from 'react-router'
+import { Button } from "@/components/ui/button"
+import { HStack } from "@chakra-ui/react"
 
 function Home() {
   return (
@@ -45,6 +47,10 @@ function Home() {
           </Link>
         </div>
       </div>
+      <HStack>
+        <Button variant="subtle">Click me</Button>
+        <Button variant="surface">Click me</Button>
+      </HStack>
     </div>
   )
 }
