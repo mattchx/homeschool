@@ -29,7 +29,7 @@ function Resources() {
   return (
     <div className="max-w-6xl mx-auto px-4">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Educational Resources</h1>
+        <h1 className="text-3xl font-bold text-black">Educational Resources</h1>
         <button className="btn-primary">
           Share Resource
         </button>

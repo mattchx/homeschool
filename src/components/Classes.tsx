@@ -28,7 +28,7 @@ function Classes() {
 
   return (
     <div className="max-w-6xl mx-auto px-4">
-      <h1 className="text-3xl font-bold mb-8">Available Classes</h1>
+      <h1 className="text-3xl font-bold mb-8 text-black">Available Classes</h1>
       <div className="grid md:grid-cols-2 gap-6">
         {classes.map((classItem) => (
           <div key={classItem.id} className="card">
