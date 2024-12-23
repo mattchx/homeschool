@@ -5,9 +5,9 @@ import { HStack } from "@chakra-ui/react"
 function Home() {
   return (
     <div className="space-y-8">
-      <section className="text-center py-12 bg-blue-50 rounded-lg">
+      <section className="text-center py-12 bg-slate-100 rounded-lg">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-slate-900 mb-4">
             Welcome to Virtual Homeschool Co-op
           </h1>
           <p className="text-xl text-gray-600">
@@ -48,7 +48,7 @@ function Home() {
         </div>
       </div>
       <HStack>
-        <Button variant="subtle">Click me</Button>
+        <Button className="btn-primary">Click me</Button>
         <Button variant="surface">Click me</Button>
       </HStack>
     </div>

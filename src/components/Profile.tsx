@@ -16,7 +16,7 @@ function Profile() {
 
   return (
     <div className="max-w-4xl mx-auto px-4">
-      <h1 className="text-3xl font-bold mb-8 text-black">My Profile</h1>
+      <h1 className="text-3xl text-slate-700 font-bold mb-8">My Profile</h1>
       
       <div className="grid md:grid-cols-3 gap-6">
         <div className="md:col-span-1">
