@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import EventModal from './EventModal';
+import { Button } from './ui/button';
+import {
+  DialogActionTrigger,
+  DialogBody,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+} from './ui/dialog';
 
 function Events() {
   const [showModal, setShowModal] = useState(false);
@@ -41,7 +52,11 @@ function Events() {
     description: '',
   });
 
-  const handleSubmit = (e) => {
+  const handleOpenChange = (details: OpenChangeDetails) => {
+    setShowModal(details.isOpen);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setEvents([...events, { ...newEvent, id: events.length + 1 }]);
     setNewEvent({
@@ -59,18 +74,109 @@ function Events() {
     <div className="max-w-6xl mx-auto px-4">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl text-slate-700 font-bold">Upcoming Events</h1>
-        <button className="btn-primary">
-          Create Event
-        </button>
+        <DialogRoot open={showModal} onOpenChange={handleOpenChange}>
+          <DialogTrigger asChild>
+            <Button variant="outline">Create Event</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Create New Event</DialogTitle>
+            </DialogHeader>
+            <DialogBody>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
+                    Title
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="title"
+                    type="text"
+                    placeholder="Event Title"
+                    value={newEvent.title}
+                    onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
+                    Date
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="date"
+                    type="date"
+                    value={newEvent.date}
+                    onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="time">
+                    Time
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="time"
+                    type="time"
+                    value={newEvent.time}
+                    onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="type">
+                    Type
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="type"
+                    type="text"
+                    placeholder="Event Type"
+                    value={newEvent.type}
+                    onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="organizer">
+                    Organizer
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="organizer"
+                    type="text"
+                    placeholder="Event Organizer"
+                    value={newEvent.organizer}
+                    onChange={(e) => setNewEvent({ ...newEvent, organizer: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
+                    Description
+                  </label>
+                  <textarea
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="description"
+                    placeholder="Event Description"
+                    value={newEvent.description}
+                    onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+                    required
+                  />
+                </div>
+                <DialogFooter>
+                  <DialogActionTrigger asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DialogActionTrigger>
+                  <Button type="submit">Create</Button>
+                </DialogFooter>
+              </form>
+            </DialogBody>
+            <DialogCloseTrigger />
+          </DialogContent>
+        </DialogRoot>
       </div>
-
-      <EventModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        newEvent={newEvent}
-        setNewEvent={setNewEvent}
-        handleSubmit={handleSubmit}
-      />
 
       <div className="space-y-6">
         {events.map((event) => (
