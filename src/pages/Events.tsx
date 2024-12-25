@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from './ui/button';
-import { Tag } from './ui/tag';
+import { Button } from '../components/ui/button';
+import { Tag } from '../components/ui/tag';
 import {
   Box,
   Container,
@@ -10,7 +10,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import EventDialog from './EventDialog';
+import EventDialog from '../components/EventDialog';
 import { EventType } from '../types';
 
 const eventsData = [

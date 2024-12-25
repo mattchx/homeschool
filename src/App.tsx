@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import Navbar from './components/Navbar'
-import Home from './components/Home'
-import Classes from './components/Classes'
-import Resources from './components/Resources'
-import Events from './components/Events'
-import Profile from './components/Profile'
+import Home from './pages/Home'
+import Classes from './pages/Classes'
+import Resources from './pages/Resources'
+import Events from './pages/Events'
+import Profile from './pages/Profile'
 
 function App() {
   return (
