@@ -1,15 +1,4 @@
 import { useState } from 'react';
-import { Button } from '../components/ui/button';
-import { Tag } from '../components/ui/tag';
-import {
-  Box,
-  Container,
-  Flex,
-  Grid,
-  Heading,
-  Stack,
-  Text,
-} from '@chakra-ui/react';
 import EventDialog from '../components/EventDialog';
 import { EventType } from '../types';
 
@@ -51,43 +40,41 @@ function Events() {
   }
 
   return (
-    <Container maxW="6xl" px={4}>
-      <Flex justify="space-between" align="center" mb={8}>
-        <Heading as="h1" size="lg" color="slate.700">Upcoming Events</Heading>
+    <div className="max-w-6xl mx-auto px-4">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Upcoming Events</h1>
         <EventDialog addEvent={handleAddEvent} />
-      </Flex>
+      </div>
 
-      <Stack gap={6}>
+      <div className="space-y-6">
         {events.map((event) => (
-          <Box key={event.id} p={6} borderWidth="1px" borderRadius="lg" shadow="sm">
-            <Flex justify="space-between" align="start">
-              <Box>
-                <Heading as="h2" size="md" mb={2}>{event.title}</Heading>
-                <Text color="gray.600" mb={4}>{event.description}</Text>
-              </Box>
-              <Tag size="md" colorScheme="green" borderRadius="full">
+          <div key={event.id} className="card">
+            <div className="flex justify-between items-start">
+              <div>
+                <h2 className="text-xl font-semibold mb-2">{event.title}</h2>
+                <p className="text-gray-600 mb-4">{event.description}</p>
+              </div>
+              <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
                 {event.type}
-              </Tag>
-            </Flex>
-            <Grid templateColumns={{ md: 'repeat(3, 1fr)' }} gap={4}>
-              <Text fontSize="sm" color="gray.600">
-                <Text as="span" fontWeight="medium">Date:</Text> {event.date}
-              </Text>
-              <Text fontSize="sm" color="gray.600">
-                <Text as="span" fontWeight="medium">Time:</Text> {event.time}
-              </Text>
-              <Text fontSize="sm" color="gray.600">
-                <Text as="span" fontWeight="medium">Organizer:</Text> {event.organizer}
-              </Text>
-            </Grid>
-            <Stack direction="row" gap={4} mt={4}>
-              <Button colorScheme="blue">Join Event</Button>
-              <Button variant="outline">Learn More</Button>
-            </Stack>
-          </Box>
+              </span>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-600">
+              <p><span className="font-medium">Date:</span> {event.date}</p>
+              <p><span className="font-medium">Time:</span> {event.time}</p>
+              <p><span className="font-medium">Organizer:</span> {event.organizer}</p>
+            </div>
+            <div className="mt-4 space-x-4">
+              <button className="btn-primary">
+                Join Event
+              </button>
+              <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                Learn More
+              </button>
+            </div>
+          </div>
         ))}
-      </Stack>
-    </Container>
+      </div>
+    </div>
   );
 }
 

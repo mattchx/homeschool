@@ -1,6 +1,4 @@
 import { Link } from 'react-router'
-import { Button } from "@/components/ui/button"
-import { HStack } from "@chakra-ui/react"
 
 function Home() {
   return (
@@ -18,7 +16,7 @@ function Home() {
 
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
         <div className="card">
-          <h2 className="text-xl font-semibold mb-4">Join Classes</h2>
+          <h2 className="text-xl font-semibold mb-4 text-black">Join Classes</h2>
           <p className="text-gray-600 mb-4">
             Participate in virtual classes taught by experienced educators and parents.
           </p>
@@ -28,7 +26,7 @@ function Home() {
         </div>
 
         <div className="card">
-          <h2 className="text-xl font-semibold mb-4">Share Resources</h2>
+          <h2 className="text-xl font-semibold mb-4 text-black">Share Resources</h2>
           <p className="text-gray-600 mb-4">
             Access and share educational materials, curriculum ideas, and teaching tips.
           </p>
@@ -38,7 +36,7 @@ function Home() {
         </div>
 
         <div className="card">
-          <h2 className="text-xl font-semibold mb-4">Join Events</h2>
+          <h2 className="text-xl font-semibold mb-4 text-black">Join Events</h2>
           <p className="text-gray-600 mb-4">
             Participate in virtual field trips, social gatherings, and group activities.
           </p>
@@ -47,10 +45,6 @@ function Home() {
           </Link>
         </div>
       </div>
-      <HStack>
-        <Button className="btn-primary">Click me</Button>
-        <Button variant="surface">Click me</Button>
-      </HStack>
     </div>
   )
 }
