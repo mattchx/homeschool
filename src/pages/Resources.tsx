@@ -40,7 +40,7 @@ function Resources() {
           <div key={resource.id} className="card">
             <div className="flex justify-between items-start mb-4">
               <h2 className="text-xl font-semibold">{resource.title}</h2>
-              <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm">
+              <span className="px-2 py-1 bg-slate-100 text-slate-800 rounded text-sm">
                 {resource.type}
               </span>
             </div>

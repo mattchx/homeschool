@@ -22,8 +22,8 @@ function Profile() {
         <div className="md:col-span-1">
           <div className="card">
             <div className="text-center">
-              <div className="w-32 h-32 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-4xl text-blue-600">{profile.name.charAt(0)}</span>
+              <div className="w-32 h-32 bg-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span className="text-4xl text-slate-700">{profile.name.charAt(0)}</span>
               </div>
               <h2 className="text-xl font-semibold">{profile.name}</h2>
               <p className="text-gray-600">{profile.location}</p>
@@ -35,8 +35,8 @@ function Profile() {
                 {profile.interests.map((interest, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm"
-                  >
+                    className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm"
+                    >
                     {interest}
                   </span>
                 ))}

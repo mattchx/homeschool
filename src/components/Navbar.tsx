@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <nav className="bg-white shadow-lg">
       <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 max-w-6xl mx-auto">
+        <div className="flex justify-between items-center h-16 max-w-5xl mx-auto">
           <Link to="/" className="text-xl font-bold text-slate-600">
             Virtual Homeschool Co-op
           </Link>
