@@ -18,3 +18,28 @@ export interface ClassType {
   location: string;
   price: number;
 }
+
+export interface ChildInfo {
+  name: string;
+  grade: string;
+}
+
+export interface OnboardingFormData {
+  parentName: string;
+  email: string;
+  children: ChildInfo[];
+}
+
+export interface ParentInfoStepProps {
+  formData: OnboardingFormData;
+  setFormData: React.Dispatch<React.SetStateAction<OnboardingFormData>>;
+}
+
+export interface ChildrenInfoStepProps {
+  formData: OnboardingFormData;
+  setFormData: React.Dispatch<React.SetStateAction<OnboardingFormData>>;
+}
+
+export interface ConfirmationStepProps {
+  formData: OnboardingFormData;
+}

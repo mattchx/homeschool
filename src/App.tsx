@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Classes from './pages/Classes'
-// import Resources from './pages/Resources'
-import Events from './pages/Events'
-import Profile from './pages/Profile'
+import { BrowserRouter as Router, Routes, Route } from 'react-router';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Classes from './pages/Classes';
+import Events from './pages/Events';
+import Profile from './pages/Profile';
+import Resources from './pages/Resources';
+import Onboarding from './pages/Onboarding';
 
 function App() {
   return (
@@ -16,15 +17,16 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/classes" element={<Classes />} />
-              {/* <Route path="/resources" element={<Resources />} /> */}
+              <Route path="/resources" element={<Resources />} />
               <Route path="/events" element={<Events />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/onboarding" element={<Onboarding />} />
             </Routes>
           </div>
         </main>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
