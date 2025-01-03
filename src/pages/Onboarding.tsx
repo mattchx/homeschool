@@ -53,20 +53,25 @@ export default function Onboarding() {
               formData={formData}
             />
           )}
-          <div className="mt-8 flex justify-between">
-            <button
-              onClick={handleBack}
-              disabled={step === 1}
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200"
-            >
-              Back
-            </button>
-            <button
+          <div className="mt-8 flex">
+            <div className="flex-grow">
+              {step > 1 && (
+                <button
+                  onClick={handleBack}
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200"
+                >
+                  Back
+                </button>
+              )}
+            </div>
+            <div>
+              <button
               onClick={handleNext}
               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
             >
               {step === 3 ? 'Complete Setup' : 'Next'}
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -80,21 +85,21 @@ function ParentInfoStep({ formData, setFormData }: ParentInfoStepProps) {
       <h2 className="text-2xl font-bold mb-6">Parent Information</h2>
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Full Name</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
           <input
             type="text"
             value={formData.parentName}
             onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
           <input
             type="email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
           />
         </div>
       </div>
@@ -125,7 +130,7 @@ function ChildrenInfoStep({ formData, setFormData }: ChildrenInfoStepProps) {
             value={childName}
             onChange={(e) => setChildName(e.target.value)}
             placeholder="Child's Name"
-            className="flex-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="appearance-none flex-1 px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
           />
           <button
             onClick={handleAddChild}
