@@ -14,7 +14,7 @@ function Home() {
         </div>
       </section>
 
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto px-4">
         <div className="card">
           <h2 className="text-xl font-semibold mb-4 text-black">Join Classes</h2>
           <p className="text-gray-600 mb-4">
@@ -25,7 +25,7 @@ function Home() {
           </Link>
         </div>
 
-        <div className="card">
+        {/* <div className="card">
           <h2 className="text-xl font-semibold mb-4 text-black">Share Resources</h2>
           <p className="text-gray-600 mb-4">
             Access and share educational materials, curriculum ideas, and teaching tips.
@@ -33,7 +33,7 @@ function Home() {
           <Link to="/resources" className="btn-primary inline-block">
             View Resources
           </Link>
-        </div>
+        </div> */}
 
         <div className="card">
           <h2 className="text-xl font-semibold mb-4 text-black">Join Events</h2>

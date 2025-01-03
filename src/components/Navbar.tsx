@@ -15,9 +15,6 @@ function Navbar() {
             <Link to="/classes" className="text-gray-600 hover:text-black">
               Classes
             </Link>
-            <Link to="/resources" className="text-gray-600 hover:text-black">
-              Resources
-            </Link>
             <Link to="/events" className="text-gray-600 hover:text-black">
               Events
             </Link>
