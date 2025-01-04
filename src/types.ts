@@ -16,7 +16,7 @@ export interface ClassType {
   instructor: string;
   description: string;
   location: string;
-  price: number;
+  price?: number;
 }
 
 export interface ChildInfo {
