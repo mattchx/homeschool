@@ -35,7 +35,7 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
             <div className="space-y-4">
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                  Title
+                  Title <span className="text-black">*</span>
                 </label>
                 <input
                   className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
@@ -49,7 +49,7 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
-                  Date
+                  Date <span className="text-black">*</span>
                 </label>
                 <input
                   className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
@@ -62,7 +62,7 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="time">
-                  Time
+                  Time <span className="text-black">*</span>
                 </label>
                 <input
                   className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
@@ -84,7 +84,6 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
                   placeholder="Event Type"
                   value={newEvent.type}
                   onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
-                  required
                 />
               </div>
               <div className="mb-4">
@@ -98,7 +97,6 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
                   placeholder="Event Organizer"
                   value={newEvent.organizer}
                   onChange={(e) => setNewEvent({ ...newEvent, organizer: e.target.value })}
-                  required
                 />
               </div>
               <div className="mb-4">
@@ -111,7 +109,6 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
                   placeholder="Event Description"
                   value={newEvent.description}
                   onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
-                  required
                 />
               </div>
             </div>

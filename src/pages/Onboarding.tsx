@@ -148,7 +148,7 @@ function ChildrenInfoStep({ formData, setFormData }: ChildrenInfoStepProps) {
                   const updatedChildren = formData.children.filter((_, i) => i !== index);
                   setFormData({ ...formData, children: updatedChildren });
                 }}
-                className="text-red-500 hover:text-red-700"
+                className="text-black hover:text-red-700"
               >
                 Remove
               </button>

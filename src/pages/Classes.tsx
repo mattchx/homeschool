@@ -55,7 +55,7 @@ function Classes() {
               <p><span className="font-medium">Instructor:</span> {classItem.instructor}</p>
               <p><span className="font-medium">Schedule:</span> {classItem.schedule}</p>
               <p><span className="font-medium">Location:</span> {classItem.location}</p>
-              <p><span className="font-medium">Price:</span> ${classItem.price.toFixed(2)}</p>
+              <p><span className="font-medium">Price:</span> ${(classItem.price ?? 0).toFixed(2)}</p>
             </div>
             <button className="btn-primary mt-4">
               Join Class
