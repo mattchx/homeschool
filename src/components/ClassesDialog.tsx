@@ -5,6 +5,8 @@ import { apiRequest } from '../utils/api';
 
 function ClassesDialog({ addClass }: { addClass: (newClass: ClassType) => void }) {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const [newClass, setNewClass] = useState<Omit<ClassType, 'id'>>({
     title: '',
@@ -15,8 +17,6 @@ function ClassesDialog({ addClass }: { addClass: (newClass: ClassType) => void }
     location: '',
     price: 0
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

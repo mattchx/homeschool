@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import * as Dialog from '@radix-ui/react-dialog';
 import { EventType } from '@/types';
+import { apiRequest } from '@/utils/api';
 
 function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const [newEvent, setNewEvent] = useState({
-    id: uuidv4(),
+  const [newEvent, setNewEvent] = useState<Omit<EventType, 'id'>>({
     title: '',
     date: '',
     time: '',
@@ -16,10 +17,20 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
     description: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    addEvent(newEvent);
-    setOpen(false);
+    setIsLoading(true);
+    setError(null)
+
+    try {
+      const createdEvent = await apiRequest<EventType>('events', 'POST', newEvent)
+      addEvent(createdEvent);
+      setOpen(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create event');
+    } finally {
+      setIsLoading(false)
+    }
   };
 
   return (
@@ -113,10 +124,24 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
               </div>
             </div>
             <div className="mt-6 flex justify-end gap-3">
+              {error && (
+                <div className="text-black text-sm mr-4 self-center">
+                  {error}
+                </div>
+              )}
               <Dialog.Close asChild>
-                <button className="btn-primary" type="button">Cancel</button>
+                <button className="btn-primary" type="button" disabled={isLoading}>Cancel</button>
               </Dialog.Close>
-              <button className="btn-primary" type="submit">Save</button>
+              <button 
+                className="btn-primary flex items-center gap-2" type="submit" disabled={isLoading}>
+                {isLoading && (
+                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                )}
+                {isLoading ? 'Saving...' : 'Save'}
+              </button>
             </div>
           </form>
           <Dialog.Close asChild>
