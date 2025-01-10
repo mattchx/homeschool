@@ -1,40 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ClassesDialog from '../components/ClassesDialog';
 import { ClassType } from '../types';
+import { apiRequest } from '../utils/api';
 
 function Classes() {
-  const [classes, setClasses] = useState<ClassType[]>([
-    {
-      id: '1',
-      title: "Introduction to World History",
-      subject: "History",
-      instructor: "Mrs. Sarah Johnson",
-      schedule: "Mondays and Wednesdays, 10:00 AM",
-      description: "A comprehensive overview of world history from ancient civilizations to modern times.",
-      location: "Online",
-      price: 49.99
-    },
-    {
-      id: '2',
-      title: "Creative Writing Workshop",
-      subject: "Language Arts",
-      instructor: "Mr. David Chen",
-      schedule: "Tuesdays, 2:00 PM",
-      description: "Develop creative writing skills through interactive workshops and peer review sessions.",
-      location: "Online",
-      price: 39.99
-    },
-    {
-      id: '3',
-      title: "Science Experiments at Home",
-      subject: "Science",
-      instructor: "Dr. Emily Martinez",
-      schedule: "Thursdays, 1:00 PM",
-      description: "Hands-on science experiments using common household materials.",
-      location: "Online",
-      price: 29.99
-    }
-  ]);
+  const [classes, setClasses] = useState<ClassType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const data = await apiRequest<ClassType[]>('classes', 'GET');
+        setClasses(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch classes');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClasses();
+  }, []);
 
   const addClass = (newClass: ClassType) => {
     setClasses([...classes, newClass]);
@@ -46,6 +33,8 @@ function Classes() {
         <h1 className="text-3xl text-slate-700 font-bold">Available Classes</h1>
         <ClassesDialog addClass={addClass} />
       </div>
+      {loading && <p>Loading classes...</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
       <div className="grid md:grid-cols-2 gap-6">
         {classes.map((classItem) => (
           <div key={classItem.id} className="card">
@@ -67,4 +56,4 @@ function Classes() {
   )
 }
 
-export default Classes
+export default Classes;

@@ -1,39 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EventsDialog from '../components/EventsDialog';
 import { EventType } from '../types';
-
-const eventsData = [
-  {
-    id: "1",
-    title: "Virtual Museum Tour",
-    date: "2024-02-15",
-    time: "1:00 PM EST",
-    type: "Field Trip",
-    organizer: "Art History Group",
-    description: "Join us for a guided virtual tour of the Metropolitan Museum of Art."
-  },
-  {
-    id: "2",
-    title: "Science Fair",
-    date: "2024-02-20",
-    time: "2:00 PM EST",
-    type: "Competition",
-    organizer: "Science Club",
-    description: "Present your science projects and learn from other students' experiments."
-  },
-  {
-    id: "3",
-    title: "Book Club Meeting",
-    date: "2024-02-25",
-    time: "3:00 PM EST",
-    type: "Social",
-    organizer: "Reading Circle",
-    description: "Discussion of this month's book: 'The Giver' by Lois Lowry."
-  }
-]
+import { apiRequest } from '../utils/api';
 
 function Events() {
-  const [events, setEvents] = useState<EventType[]>(eventsData);
+  const [events, setEvents] = useState<EventType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const data = await apiRequest<EventType[]>('events', 'GET');
+        setEvents(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch events');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const handleAddEvent = (newEvent: EventType) => {
     setEvents([...events, newEvent]);
@@ -45,6 +33,9 @@ function Events() {
         <h1 className="text-3xl font-bold">Upcoming Events</h1>
         <EventsDialog addEvent={handleAddEvent} />
       </div>
+
+      {loading && <p>Loading events...</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
 
       <div className="space-y-6">
         {events.map((event) => (
