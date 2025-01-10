@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { EventType } from '@/types';
 import { apiRequest } from '@/utils/api';
 
-function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) {
+function EventsDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -161,4 +161,4 @@ function EventDialog({ addEvent }: { addEvent: (newEvent: EventType) => void }) 
   );
 }
 
-export default EventDialog;
+export default EventsDialog;
