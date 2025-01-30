@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { EventType } from '@/types';
 import { apiRequest } from '@/utils/api';
@@ -17,7 +17,11 @@ function EventsDialog({ addEvent }: { addEvent: (newEvent: EventType) => void })
     description: ''
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleTitleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewEvent(prev => ({ ...prev, title: e.target.value }));
+  }, []);
+
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null)
@@ -31,7 +35,7 @@ function EventsDialog({ addEvent }: { addEvent: (newEvent: EventType) => void })
     } finally {
       setIsLoading(false)
     }
-  };
+  }, [newEvent, addEvent]);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -44,20 +48,101 @@ function EventsDialog({ addEvent }: { addEvent: (newEvent: EventType) => void })
           <form onSubmit={handleSubmit}>
             <Dialog.Title className="text-xl text-black font-semibold mb-4">Create New Event</Dialog.Title>
             <div className="space-y-4">
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                  Title <span className="text-black">*</span>
-                </label>
-                <input
-                  className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
-                  id="title"
-                  type="text"
-                  placeholder="Event Title"
-                  value={newEvent.title}
-                  onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                  required
-                />
-              </div>
+              {useMemo(() => (
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
+                    Title <span className="text-black">*</span>
+                  </label>
+                  <input
+                    className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
+                    id="title"
+                    type="text"
+                    placeholder="Event Title"
+                    value={newEvent.title}
+                    onChange={handleTitleChange}
+                    required
+                  />
+                </div>
+              ), [newEvent.title])}
+
+              {useMemo(() => (
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
+                    Date <span className="text-black">*</span>
+                  </label>
+                  <input
+                    className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
+                    id="date"
+                    type="date"
+                    value={newEvent.date}
+                    onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                    required
+                  />
+                </div>
+              ), [newEvent.date])}
+
+              {useMemo(() => (
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="time">
+                    Time <span className="text-black">*</span>
+                  </label>
+                  <input
+                    className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
+                    id="time"
+                    type="time"
+                    value={newEvent.time}
+                    onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
+                    required
+                  />
+                </div>
+              ), [newEvent.time])}
+
+              {useMemo(() => (
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="type">
+                    Type
+                  </label>
+                  <input
+                    className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
+                    id="type"
+                    type="text"
+                    placeholder="Event Type"
+                    value={newEvent.type}
+                    onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
+                  />
+                </div>
+              ), [newEvent.type])}
+
+              {useMemo(() => (
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="organizer">
+                    Organizer
+                  </label>
+                  <input
+                    className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
+                    id="organizer"
+                    type="text"
+                    placeholder="Event Organizer"
+                    value={newEvent.organizer}
+                    onChange={(e) => setNewEvent({ ...newEvent, organizer: e.target.value })}
+                  />
+                </div>
+              ), [newEvent.organizer])}
+
+              {useMemo(() => (
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
+                    Description
+                  </label>
+                  <textarea
+                    className="appearance-none w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
+                    id="description"
+                    placeholder="Event Description"
+                    value={newEvent.description}
+                    onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+                  />
+                </div>
+              ), [newEvent.description])}
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
                   Date <span className="text-black">*</span>
