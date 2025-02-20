@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\" --names \"client,server\" --prefix-colors \"cyan,magenta\"",
-    "build": "cd client && npm run build && cd ../server && npm run build"
+    "setup": "concurrently \"cd client && npm install\" \"cd server && npm install\" --names \"client,server\" --prefix-colors \"cyan,magenta\""
   }
 }
