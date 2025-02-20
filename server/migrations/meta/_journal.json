@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1736118289894,
+      "tag": "0000_spooky_blazing_skull",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1736188951785,
+      "tag": "0001_silent_johnny_blaze",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1736192497615,
+      "tag": "0002_goofy_black_crow",
+      "breakpoints": true
+    }
+  ]
+}
